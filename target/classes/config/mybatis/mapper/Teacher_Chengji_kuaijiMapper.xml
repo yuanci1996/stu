@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.Teacher_Chengji_kuaijiMapper">
+
+<insert id="addTeacher_Chengji_kuaiji">
+insert into tb_chengji_kuaiji (zhuanye_id,zhuanye_name,student_number,student_name,kc_gjcw,kc_cwbg,kc_cwzh,kc_xnlw,kc_scyx
+ ,kc_rjgc_sx,cj_xueqi)
+ values (#{zhuanye_id},#{zhuanye_name},#{student_number},#{student_name},#{kc_gjcw},#{kc_cwbg},#{kc_cwzh},#{kc_xnlw},#{kc_scyx}
+ ,#{kc_rjgc_sx},#{cj_xueqi})
+</insert>
+
+<update id="modifyTeacher_Chengji_kuaiji">
+update tb_chengji_kuaiji 
+<set>
+    <if test="zhuanye_name !=null">zhuanye_name=#{zhuanye_name},</if>
+    <if test="student_number !=null and student_number !=''">student_number=#{student_number},</if>
+    <if test="student_name !=null and student_name !=''">student_name=#{student_name},</if>
+    <if test="kc_gjcw !=null">kc_gjcw=#{kc_gjcw},</if>
+    <if test="kc_cwbg !=null">kc_cwbg=#{kc_cwbg},</if>
+    <if test="kc_cwzh !=null">kc_cwzh=#{kc_cwzh},</if>
+     <if test="kc_xnlw !=null">kc_xnlw=#{kc_xnlw},</if>
+    <if test="kc_scyx !=null">kc_scyx=#{kc_scyx},</if>
+    <if test="kc_rjgc_sx !=null">kc_rjgc_sx=#{kc_rjgc_sx},</if>
+    <if test="cj_xueqi !=null">cj_xueqi=#{cj_xueqi},</if>
+</set>
+where kuaiji_id=#{kuaiji_id}
+</update>
+
+<delete id="deleteTeacher_Chengji_kuaiji">
+delete from tb_chengji_kuaiji where kuaiji_id=#{kuaiji_id}
+</delete>
+
+<select id="queryTeacher_Chengji_kuaijiList" resultType="ChengJi_kuaiji">
+select * from tb_chengji_kuaiji
+    <where>
+    <if test="zhuanye_id !=null"> zhuanye_id=#{zhuanye_id}</if>
+    <if test="student_number !=null and student_number !=''">and student_number=#{student_number}</if>
+    </where>
+    <if test="pageStart !=null and rows !=null "> limit #{pageStart},#{rows}</if>
+</select>
+
+<select id="queryTeacher_Chengji_kuaijiListTotal" resultType="java.lang.Long">
+select count(*) from tb_chengji_kuaiji
+    <where>
+    <if test="zhuanye_id !=null"> zhuanye_id=#{zhuanye_id}</if>
+    <if test="student_number !=null and student_number !=''">and student_number=#{student_number}</if>
+    </where>
+</select>
+</mapper>

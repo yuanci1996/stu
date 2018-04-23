@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.Teacher_Chengji_daotieMapper">
+
+<insert id="addTeacher_Chengji_daotie">
+insert into tb_chengji_daotie (zhuanye_id,zhuanye_name,student_number,student_name,kc_gcxm,kc_tmgc,kc_sgzz,kc_tlgh,kc_tdgc
+ ,kc_rrdj,kc_tlgh_kcss,kc_sgzz_kcss,kc_rjgc_sx,cj_xueqi)
+ values (#{zhuanye_id},#{zhuanye_name},#{student_number},#{student_name},#{kc_gcxm},#{kc_tmgc},#{kc_sgzz},#{kc_tlgh},#{kc_tdgc}
+ ,#{kc_rrdj},#{kc_tlgh_kcss},#{kc_sgzz_kcss},#{kc_rjgc_sx},#{cj_xueqi})
+</insert>
+
+<update id="modifyTeacher_Chengji_daotie">
+update tb_chengji_daotie 
+<set>
+    <if test="zhuanye_name !=null">zhuanye_name=#{zhuanye_name},</if>
+    <if test="student_number !=null and student_number !=''">student_number=#{student_number},</if>
+    <if test="student_name !=null and student_name !=''">student_name=#{student_name},</if>
+    <if test="kc_gcxm !=null">kc_gcxm=#{kc_gcxm},</if>
+    <if test="kc_tmgc !=null">kc_tmgc=#{kc_tmgc},</if>
+    <if test="kc_sgzz !=null">kc_sgzz=#{kc_sgzz},</if>
+     <if test="kc_tlgh !=null">kc_tlgh=#{kc_tlgh},</if>
+    <if test="kc_tdgc !=null">kc_tdgc=#{kc_tdgc},</if>
+    <if test="kc_rrdj !=null">kc_rrdj=#{kc_rrdj},</if>
+    <if test="kc_tlgh_kcss !=null">kc_tlgh_kcss=#{kc_tlgh_kcss},</if>
+    <if test="kc_sgzz_kcss !=null">kc_sgzz_kcss=#{kc_sgzz_kcss},</if>
+    <if test="kc_rjgc_sx !=null">kc_rjgc_sx=#{kc_rjgc_sx},</if>
+    <if test="cj_xueqi !=null">cj_xueqi=#{cj_xueqi},</if>
+</set>
+where daotie_id=#{daotie_id}
+</update>
+
+<delete id="deleteTeacher_Chengji_daotie">
+delete from tb_chengji_daotie where daotie_id=#{daotie_id}
+</delete>
+
+<select id="queryTeacher_Chengji_daotieList" resultType="ChengJi_daotie">
+select * from tb_chengji_daotie
+    <where>
+    <if test="zhuanye_id !=null"> zhuanye_id=#{zhuanye_id}</if>
+    <if test="student_number !=null and student_number !=''">and student_number=#{student_number}</if>
+    </where>
+    <if test="pageStart !=null and rows !=null "> limit #{pageStart},#{rows}</if>
+</select>
+
+<select id="queryTeacher_Chengji_daotieListTotal" resultType="java.lang.Long">
+select count(*) from tb_chengji_daotie
+    <where>
+    <if test="zhuanye_id !=null"> zhuanye_id=#{zhuanye_id}</if>
+    <if test="student_number !=null and student_number !=''">and student_number=#{student_number}</if>
+    </where>
+</select>
+</mapper>

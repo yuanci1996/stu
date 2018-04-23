@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+       
+       
+       
+ <!--     springmvc会将这个包下的@Controller注解的类注册为String的controller  -->
+	<context:component-scan base-package="com.controller" ></context:component-scan>
+
+
+       <!-- 静态资源处理 -->
+	<mvc:annotation-driven />
+	<mvc:resources location="/images/" mapping="/images/**" />
+	<mvc:resources location="/js/" mapping="/js/**" />
+	<mvc:resources location="/css/" mapping="/css/**" />
+	<mvc:resources location="/easyui/" mapping="/easyui/**" />
+	
+	<mvc:interceptors>
+	<mvc:interceptor>
+	<mvc:mapping path="/**"/>
+	<mvc:exclude-mapping path="/**/easyui/*" />
+	<mvc:exclude-mapping path="/**/*.swf"/>
+	<mvc:exclude-mapping path="/**/*.css" />
+	<mvc:exclude-mapping path="/**/*.js" />
+	<mvc:exclude-mapping path="/**/*.png" />
+	<mvc:exclude-mapping path="/**/*.gif" />
+	<mvc:exclude-mapping path="/**/*.jpg" />
+	<mvc:exclude-mapping path="/**/*.jpeg" />
+	<mvc:exclude-mapping path="/admin_login"/>
+	<mvc:exclude-mapping path="/teacher_login"/>
+	<mvc:exclude-mapping path="/student_login"/>
+	<mvc:exclude-mapping path="/all_login"/>
+	<mvc:exclude-mapping path="/reLogin"/>
+
+	<bean class="com.utils.LoginInterceptor"></bean>
+	</mvc:interceptor>
+	</mvc:interceptors>
+  
+   	<!-- 页面全局异常处理 -->
+	<bean id="exceptionResolver"
+		class="com.utils.CustomExceptionHandler"></bean>
+    <mvc:annotation-driven />
+    <!-- 启动Springmvc注解驱动 -->
+    <mvc:annotation-driven/>
+ <!-- 返回json 方法一 需要导入 fastjson.jar包 -->  
+    <mvc:annotation-driven>
+        <mvc:message-converters register-defaults="false">
+            <!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
+            <bean id="fastJsonHttpMessageConverter" class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
+                <property name="supportedMediaTypes">
+                    <list>
+                        <!-- 这里顺序不能反，一定先写text/html,不然ie下出现下载提示 -->
+                        <value>text/html;charset=UTF-8</value>
+                        <value>application/json;charset=UTF-8</value>
+                    </list>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    
+    
+    <mvc:default-servlet-handler/>
+
+    <!-- 视图解析器 -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- 前缀 -->
+		<property name="prefix">
+			<value>/WEB-INF/jsp/</value>
+		</property>
+		<!-- 后缀 -->
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+		<property name="contentType">
+			<value>text/html;charset=UTF-8</value>
+		</property>
+	</bean>
+	
+	<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+	<property name="supportedMediaTypes">
+	<list>
+	<value>test/plain;charset=UTF-8</value>
+	</list>
+	</property>
+	</bean>
+	
+	<!-- 定义文件解释器 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+	<!-- 设置默认编码 -->
+	<property name="defaultEncoding" value="utf-8"></property>
+	<!-- 上传图片最大大小5M--> 
+	<property name="maxUploadSize" value="5242440"></property>  
+</bean>
+
+</beans>

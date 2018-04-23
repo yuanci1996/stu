@@ -1,0 +1,1 @@
+<jsp:forward page="all_login"></jsp:forward>

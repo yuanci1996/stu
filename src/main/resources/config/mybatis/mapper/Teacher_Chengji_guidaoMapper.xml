@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.Teacher_Chengji_guidaoMapper">
+
+<insert id="addTeacher_Chengji_guidao">
+insert into tb_chengji_guidao (zhuanye_id,zhuanye_name,student_number,student_name,kc_qrs,kc_jsjls,kc_lcyx,kc_xcdd,kc_xhsj
+ ,kc_gsm_r,kc_xhsj_kcsj,kc_scsx,kc_rjgc_sx,cj_xueqi)
+ values (#{zhuanye_id},#{zhuanye_name},#{student_number},#{student_name},#{kc_qrs},#{kc_jsjls},#{kc_lcyx},#{kc_xcdd},#{kc_xhsj}
+ ,#{kc_gsm_r},#{kc_xhsj_kcsj},#{kc_scsx},#{kc_rjgc_sx},#{cj_xueqi})
+</insert>
+	
+<update id="modifyTeacher_Chengji_guidao">
+update tb_chengji_guidao 
+<set>
+    <if test="zhuanye_name !=null">zhuanye_name=#{zhuanye_name},</if>
+    <if test="student_number !=null and student_number !=''">student_number=#{student_number},</if>
+    <if test="student_name !=null and student_name !=''">student_name=#{student_name},</if>
+    <if test="kc_qrs !=null">kc_qrs=#{kc_qrs},</if>
+    <if test="kc_jsjls !=null">kc_jsjls=#{kc_jsjls},</if>
+    <if test="kc_lcyx !=null">kc_lcyx=#{kc_lcyx},</if>
+     <if test="kc_xcdd !=null">kc_xcdd=#{kc_xcdd},</if>
+    <if test="kc_xhsj !=null">kc_xhsj=#{kc_xhsj},</if>
+    <if test="kc_gsm_r !=null">kc_gsm_r=#{kc_gsm_r},</if>
+    <if test="kc_xhsj_kcsj !=null">kc_xhsj_kcsj=#{kc_xhsj_kcsj},</if>
+    <if test="kc_scsx !=null">kc_scsx=#{kc_scsx},</if>
+    <if test="kc_rjgc_sx !=null">kc_rjgc_sx=#{kc_rjgc_sx},</if>
+    <if test="cj_xueqi !=null">cj_xueqi=#{cj_xueqi},</if>
+</set>
+where guidao_id=#{guidao_id}
+</update>
+
+<delete id="deleteTeacher_Chengji_guidao">
+delete from tb_chengji_guidao where guidao_id=#{guidao_id}
+</delete>
+
+<select id="queryTeacher_Chengji_guidaoList" resultType="ChengJi_guidao">
+select * from tb_chengji_guidao
+    <where>
+    <if test="zhuanye_id !=null"> zhuanye_id=#{zhuanye_id}</if>
+    <if test="student_number !=null and student_number !=''">and student_number=#{student_number}</if>
+    </where>
+    <if test="pageStart !=null and rows !=null "> limit #{pageStart},#{rows}</if>
+</select>
+
+<select id="queryTeacher_Chengji_guidaoListTotal" resultType="java.lang.Long">
+select count(*) from tb_chengji_guidao
+    <where>
+    <if test="zhuanye_id !=null"> zhuanye_id=#{zhuanye_id}</if>
+    <if test="student_number !=null and student_number !=''">and student_number=#{student_number}</if>
+    </where>
+</select>
+</mapper>

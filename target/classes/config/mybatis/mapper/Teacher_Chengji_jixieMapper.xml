@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.Teacher_Chengji_jixieMapper">
+
+<insert id="addTeacher_Chengji_jixie">
+insert into tb_chengji_jixie (zhuanye_id,zhuanye_name,student_number,student_name,kc_jdyth,kc_skjs,kc_jxcad,kc_jdcd,kc_labview
+ ,kc_scsx,kc_qrsxt,kc_rjsx,cj_xueqi)
+ values (#{zhuanye_id},#{zhuanye_name},#{student_number},#{student_name},#{kc_jdyth},#{kc_skjs},#{kc_jxcad},#{kc_jdcd},#{kc_labview}
+ ,#{kc_scsx},#{kc_qrsxt},#{kc_rjsx},#{cj_xueqi})
+</insert>
+
+<update id="modifyTeacher_Chengji_jixie">
+update tb_chengji_jixie 
+<set>
+    <if test="zhuanye_name !=null">zhuanye_name=#{zhuanye_name},</if>
+    <if test="student_number !=null and student_number !=''">student_number=#{student_number},</if>
+    <if test="student_name !=null and student_name !=''">student_name=#{student_name},</if>
+    <if test="kc_jdyth !=null">kc_jdyth=#{kc_jdyth},</if>
+    <if test="kc_skjs !=null">kc_skjs=#{kc_skjs},</if>
+    <if test="kc_jxcad !=null">kc_jxcad=#{kc_jxcad},</if>
+     <if test="kc_jdcd !=null">kc_jdcd=#{kc_jdcd},</if>
+    <if test="kc_labview !=null">kc_labview=#{kc_labview},</if>
+    <if test="kc_scsx !=null">kc_scsx=#{kc_scsx},</if>
+    <if test="kc_qrsxt !=null">kc_qrsxt=#{kc_qrsxt},</if>
+    <if test="kc_rjsx !=null">kc_rjsx=#{kc_rjsx},</if>
+    <if test="cj_xueqi !=null">cj_xueqi=#{cj_xueqi},</if>
+</set>
+where jixie_id=#{jixie_id}
+</update>
+
+<delete id="deleteTeacher_Chengji_jixie">
+delete from tb_chengji_jixie where jixie_id=#{jixie_id}
+</delete>
+
+<select id="queryTeacher_Chengji_jixieList" resultType="ChengJi_jixie">
+select * from tb_chengji_jixie
+    <where>
+    <if test="zhuanye_id !=null"> zhuanye_id=#{zhuanye_id}</if>
+    <if test="student_number !=null and student_number !=''">and student_number=#{student_number}</if>
+    </where>
+    <if test="pageStart !=null and rows !=null "> limit #{pageStart},#{rows}</if>
+</select>
+
+<select id="queryTeacher_Chengji_jixieListTotal" resultType="java.lang.Long">
+select count(*) from tb_chengji_jixie
+    <where>
+    <if test="zhuanye_id !=null"> zhuanye_id=#{zhuanye_id}</if>
+    <if test="student_number !=null and student_number !=''">and student_number=#{student_number}</if>
+    </where>
+</select>
+</mapper>

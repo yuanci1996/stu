@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.TeacherMapper">
+
+	<select id="login" parameterType="String"
+		resultType="TeacherForm">
+		select * from tb_teacher where teacher_number= #{teacher_number} and teacher_password =
+		#{teacher_password}
+	</select>
+	
+	<insert id="addStudent">
+	insert into tb_student (student_number,class_id,zhuanye_id,student_name,student_sex,student_jiguan,student_bir,student_tel
+	
+	,student_mianmao,student_mingzu,student_student_type,student_xueyuan,student_nianji,student_zhuanye,student_fudaoyuan)
+	
+	values (#{student_number},#{class_id},#{zhuanye_id},#{student_name},#{student_sex},#{student_jiguan},#{student_bir},#{student_tel}
+	
+	,#{student_mianmao},#{student_mingzu},#{student_student_type},#{student_xueyuan},#{student_nianji},#{student_zhuanye},#{student_fudaoyuan})
+	</insert>
+
+    <delete id="deleteStudent">
+    delete from tb_student where student_number=#{student_number}
+    </delete>
+    
+    <update id="modifyStudent">
+    update tb_student 
+    <set>
+    <if test="student_number !=null">student_number=#{student_number},</if>
+    <if test="class_id !=null and class_id !=''">class_id=#{class_id},</if>
+    <if test="zhuanye_id !=null and zhuanye_id !=''">zhuanye_id=#{zhuanye_id},</if>
+    <if test="student_name !=null">student_name=#{student_name},</if>
+    <if test="student_password !=null">student_password=#{student_password},</if>
+    <if test="student_sex !=null">student_sex=#{student_sex},</if>
+    <if test="student_jiguan !=null">student_jiguan=#{student_jiguan},</if>
+    <if test="student_bir !=null">student_bir=#{student_bir},</if>
+    <if test="student_tel !=null">student_tel=#{student_tel},</if>
+    <if test="student_mianmao !=null">student_mianmao=#{student_mianmao},</if>
+    <if test="student_mingzu !=null">student_mingzu=#{student_mingzu},</if>
+    <if test="student_student_type !=null">student_student_type=#{student_student_type},</if>
+    <if test="student_xueyuan !=null">student_xueyuan=#{student_xueyuan},</if>
+    <if test="student_nianji !=null">student_nianji=#{student_nianji},</if>
+    <if test="student_zhuanye !=null">student_zhuanye=#{student_zhuanye},</if>
+    <if test="student_fudaoyuan !=null">student_fudaoyuan=#{student_fudaoyuan}</if>
+    </set>
+    where student_number=#{student_number}
+    </update>
+    
+    <select id="queryStudentList" resultType="StudentForm">
+    select * from tb_student 
+    <where>
+    <if test="zhuanye_id !=null"> zhuanye_id=#{zhuanye_id}</if>
+    <if test="student_number !=null and student_number !=''">and student_number=#{student_number}</if>
+    </where>
+    <if test="pageStart !=null and rows !=null "> limit #{pageStart},#{rows}</if>
+    </select>
+    
+    <select id="queryStudentListTotal" resultType="java.lang.Long">
+    select count(*) from tb_student 
+    <where>
+    <if test="zhuanye_id !=null"> zhuanye_id=#{zhuanye_id}</if>
+    <if test="student_number !=null and student_number !=''">and student_number=#{student_number}</if>
+    </where>
+    </select>
+
+    <insert id="addStudentJc">
+    insert into tb_jiangcheng (student_number,student_name,jiangcheng_name,jiangcheng_time,jiangcheng_fujiafen,jiangcheng_type,zhuanye_id)
+    values (#{student_number},#{student_name},#{jiangcheng_name},#{jiangcheng_time},#{jiangcheng_fujiafen},#{jiangcheng_type},#{zhuanye_id})
+    </insert>
+    
+    <delete id="deleteStudentJc">
+    delete from tb_jiangcheng where jiangcheng_id=#{jiangcheng_id}
+    </delete>
+    
+    <update id="modifyStudentJc">
+        update tb_jiangcheng 
+    <set>
+    <if test="student_number !=null">student_number=#{student_number},</if>
+    <if test="student_name !=null">student_name=#{student_name},</if>
+    <if test="jiangcheng_time !=null">jiangcheng_time=#{jiangcheng_time},</if>
+    <if test="jiangcheng_fujiafen !=null">jiangcheng_fujiafen=#{jiangcheng_fujiafen},</if>
+    <if test="jiangcheng_type !=null">jiangcheng_type=#{jiangcheng_type}</if>
+    </set>
+    where jiangcheng_id=#{jiangcheng_id}
+    </update>
+    
+    <select id="queryStudentListJc" resultType="JianChengForm">
+    select * from tb_jiangcheng 
+      <where>
+    <if test="zhuanye_id !=null"> zhuanye_id=#{zhuanye_id}</if>
+    <if test="student_number !=null and student_number !=''">and student_number=#{student_number}</if>
+    </where>
+    <if test="pageStart !=null and rows !=null "> limit #{pageStart},#{rows}</if>
+    </select>
+    
+    <select id="queryStudentListJcTotal" resultType="java.lang.Long">
+    select count(*) from tb_jiangcheng 
+      <where>
+    <if test="zhuanye_id !=null"> zhuanye_id=#{zhuanye_id}</if>
+    <if test="student_number !=null and student_number !=''">and student_number=#{student_number}</if>
+    </where>
+    </select>
+
+
+           <!-- 导入Excel -->
+  <insert id="addStudentByExcel" parameterType="java.util.List" >
+    insert into tb_student (student_number,class_id,zhuanye_id,student_name,student_sex,student_jiguan,student_bir,student_tel
+	
+	,student_mianmao,student_mingzu,student_student_type,student_xueyuan,student_nianji,student_zhuanye,student_fudaoyuan) VALUES
+    <foreach collection="stuList" item="item" index="index" separator="," >  
+        (#{item.student_number},#{item.class_id},#{item.zhuanye_id},#{item.student_name},#{item.student_sex},#{item.student_jiguan},#{item.student_bir},#{item.student_tel}
+	
+	,#{item.student_mianmao},#{item.student_mingzu},#{item.student_student_type},#{item.student_xueyuan},#{item.student_nianji},#{item.student_zhuanye},#{item.student_fudaoyuan}) 
+    </foreach>  
+  </insert>
+</mapper>
