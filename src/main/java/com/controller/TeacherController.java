@@ -4,11 +4,9 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.List;
@@ -240,6 +238,12 @@ public class TeacherController {
 	        }
 		}
 	    
+	    /**
+	     * 下载学生列表模板
+	     * @param request
+	     * @param response
+	     * @throws IOException
+	     */
 	    @RequestMapping(value="/erportStudentsExcelMuBan")
 	    public void exportStuExcelMuban(HttpServletRequest request, HttpServletResponse response) throws IOException {
 	    	String path = request.getSession().getServletContext().getRealPath("excel")+"/";

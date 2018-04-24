@@ -3,6 +3,8 @@ package com.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.pojo.ChengJi_jixie;
 
 public interface Teacher_Chengji_jixieService {
@@ -41,4 +43,11 @@ public interface Teacher_Chengji_jixieService {
 	 * @return
 	 */
 	public Long queryTeacher_Chengji_jixieListTotal(Map<String,Object> params);
+	
+	/**
+	 * 导入机械成绩Excel
+	 * @param jixieList
+	 * @return
+	 */
+	public int addTeacher_Chengji_jixieByExcel(@Param("jixieList") List<Object> jixieList);
 }

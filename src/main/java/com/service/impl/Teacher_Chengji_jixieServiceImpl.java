@@ -45,4 +45,10 @@ public class Teacher_Chengji_jixieServiceImpl implements Teacher_Chengji_jixieSe
 		// TODO Auto-generated method stub
 		return teacher_Chengji_jixieMapper.queryTeacher_Chengji_jixieListTotal(params);
 	}
+
+	@Override
+	public int addTeacher_Chengji_jixieByExcel(List<Object> jixieList) {
+		// TODO Auto-generated method stub
+		return teacher_Chengji_jixieMapper.addTeacher_Chengji_jixieByExcel(jixieList);
+	}
 }

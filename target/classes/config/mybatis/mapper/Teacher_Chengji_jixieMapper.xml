@@ -48,4 +48,14 @@ select count(*) from tb_chengji_jixie
     <if test="student_number !=null and student_number !=''">and student_number=#{student_number}</if>
     </where>
 </select>
+
+           <!-- 导入Excel -->
+  <insert id="addTeacher_Chengji_jixieByExcel" parameterType="java.util.List" >
+    insert into tb_chengji_jixie (zhuanye_id,zhuanye_name,student_number,student_name,kc_jdyth,kc_skjs,kc_jxcad,kc_jdcd,kc_labview
+ ,kc_scsx,kc_qrsxt,kc_rjsx,cj_xueqi) VALUES
+    <foreach collection="jixieList" item="item" index="index" separator="," >  
+    (#{item.zhuanye_id},#{item.zhuanye_name},#{item.student_number},#{item.student_name},#{item.kc_jdyth},#{item.kc_skjs},#{item.kc_jxcad},#{item.kc_jdcd},#{item.kc_labview}
+ ,#{item.kc_scsx},#{item.kc_qrsxt},#{item.kc_rjsx},#{item.cj_xueqi}) 
+    </foreach>  
+  </insert>
 </mapper>
