@@ -57,6 +57,14 @@ function doView() {
 		text : '删除',
 		iconCls : 'icon-cancel',
 		handler : doDelete
+	},{
+		id : 'button-export',
+		text : '<a style="text-decoration:none;" href="${pageContext.request.contextPath}/erportStudentsExcel?zhuanye_id='+"${sessionScope.user.zhuanye_id }"+'">导出到Excel</a>',
+		iconCls : 'icon-save'
+	}, {
+		id : 'button-daoru',
+		text : '<a style="text-decoration:none;" href="javascript:openStuExcelDialog()">导入Excel</a>',
+		iconCls : 'icon-edit'
 	}];
 	//定义冻结列
 	var frozenColumns = [ [ {

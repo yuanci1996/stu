@@ -20,6 +20,7 @@
     <mapper resource="config/mybatis/mapper/Teacher_Chengji_jiaotongMapper.xml" />
     <mapper resource="config/mybatis/mapper/Teacher_Chengji_guidaoMapper.xml" />
     <mapper resource="config/mybatis/mapper/Teacher_Chengji_kuaijiMapper.xml" />
+    <mapper resource="config/mybatis/mapper/TeacherCchengjiMapper.xml" />
     </mappers>
  
 </configuration>

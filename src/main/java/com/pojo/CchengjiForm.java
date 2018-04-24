@@ -1,6 +1,8 @@
 package com.pojo;
 
 public class CchengjiForm {
+	private int cc_id;
+	private int zhuanye_id;
 	private String student_number;
 	private String name;
 	private String Fosc;
@@ -27,7 +29,19 @@ public class CchengjiForm {
 		Fsc = fsc;
 		this.sco = sco;
 	}
-
+	
+	public int getZhuanye_id() {
+		return zhuanye_id;
+	}
+	public void setZhuanye_id(int zhuanye_id) {
+		this.zhuanye_id = zhuanye_id;
+	}
+	public int getCc_id() {
+		return cc_id;
+	}
+	public void setCc_id(int cc_id) {
+		this.cc_id = cc_id;
+	}
 	public String getStudent_number() {
 		return student_number;
 	}

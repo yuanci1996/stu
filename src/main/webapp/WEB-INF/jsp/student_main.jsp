@@ -214,10 +214,10 @@ pageEncoding="UTF-8"%>
     <div class="easyui-accordion" fit="true" border="false">
         <div title="基本功能" data-options="iconCls:'icon-mini-add'" style="overflow:auto">
             <ul id="treeMenu" class="ztree"><li>
-            <div><a onclick="showcontent('查询基本信息','${pageContext.request.contextPath }/student/student_list')">查询基本信息</a></div>
-            <div><a onclick="showcontent('查询奖惩信息','${pageContext.request.contextPath }/student/studentjc_list')">查询奖惩信息</a></div>
-            <div><a onclick="showcontent('查询奖惩信息','${pageContext.request.contextPath }/student/studentgrade_list')">查询成绩信息</a></div>
-            <div><a onclick="showcontent('查询奖惩信息','${pageContext.request.contextPath }/student/studentgb_list')">查询综合测评信息</a></div>
+            <div><a onclick="showcontent('查询基本信息','${pageContext.request.contextPath }/student_list')">查询基本信息</a></div>
+            <div><a onclick="showcontent('查询奖惩信息','${pageContext.request.contextPath }/studentjc_list')">查询奖惩信息</a></div>
+            <div><a onclick="showcontent('查询成绩信息','${pageContext.request.contextPath }/studentgrade_list')">查询成绩信息</a></div>
+            <div><a onclick="showcontent('查询综合测评信息','${pageContext.request.contextPath}/studentgb_list')">查询综合测评信息</a></div>
             </li></ul>
         </div>  
 <!--         <div title="系统管理" data-options="iconCls:'icon-mini-add'" style="overflow:auto">

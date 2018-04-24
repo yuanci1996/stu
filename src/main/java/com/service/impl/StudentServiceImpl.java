@@ -1,6 +1,10 @@
 package com.service.impl;
 
 
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,17 +26,28 @@ public class StudentServiceImpl implements StudentService{
 	}
 	
 	@Override
-	public StudentForm queryall(String student_number){
-		return studentMapper.queryall(student_number);
+	public List<StudentForm> queryall(Map<String,Object> params){
+		return studentMapper.queryall(params);
 	}
 	
 	@Override
-	public JianChengForm queryjcall(String student_number){
-		return studentMapper.queryjcall(student_number);
+	public List<JianChengForm> queryjcall(Map<String,Object> params){
+		return studentMapper.queryjcall(params);
 	}
 
 	@Override
-	public CchengjiForm querygball(String student_number){
-		return studentMapper.querygball(student_number);
+	public List<CchengjiForm> querygball(Map<String,Object> params){
+		return studentMapper.querygball(params);
+	}  
+	
+	@Override
+	public Long queryStudentListTotal(Map<String, Object> params) {
+		return studentMapper.queryStudentListTotal(params);
 	}
+	
+//	@Override
+//	public CchengjiForm querygradeall(@Param("student_number")String student_number) {
+//		return studentMapper.querygradeall(student_number);
+//	}
+
 }

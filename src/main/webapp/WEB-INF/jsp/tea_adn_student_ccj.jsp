@@ -57,6 +57,14 @@ function doView() {
 		text : '删除',
 		iconCls : 'icon-cancel',
 		handler : doDelete
+	},{
+		id : 'button-export',
+		text : '<a style="text-decoration:none;" href="${pageContext.request.contextPath}/erportStudentsExcel?zhuanye_id='+"${sessionScope.user.zhuanye_id }"+'">导出到Excel</a>',
+		iconCls : 'icon-save'
+	}, {
+		id : 'button-daoru',
+		text : '<a style="text-decoration:none;" href="javascript:openStuExcelDialog()">导入Excel</a>',
+		iconCls : 'icon-edit'
 	}];
 	//定义冻结列
 	var frozenColumns = [ [ {
@@ -106,11 +114,6 @@ function doView() {
 		title : '综测成绩',
 		width : 80,
 		align : 'center'
-	},{
-		field : 'sco',
-		title : '综测排名',
-		width : 100,
-		align : 'center'
 	}
 	] ];
 	$(function(){
@@ -142,6 +145,7 @@ function doView() {
 	function openAddDialog() {
 	    $("#dlg").dialog("open").dialog("setTitle", "添加学生");
 	    resetValue();
+	    $("#student_number").removeAttr("readonly");
 	    $("#cc_id").removeAttr("name");
 	    var student_number=" ";
 	    $("#student_number").val(student_number);
@@ -231,9 +235,9 @@ function doView() {
             <form method="post" id="fm">
             <input type="hidden" id=cc_id name="cc_id" readonly="readonly">
             <table  cellspacing="20px">
-            <tr>
+             <tr>
              <td>学号：</td>
-             <td><input type="text" id=student_number name="student_number" class="easyui-validatebox"   required="required" />&nbsp;
+             <td><input type="text" id=student_number name="student_number" class="easyui-validatebox" readonly="readonly"  required="required" />&nbsp;
              <span style="color: red">*</span>
              </td>
              <td>姓名：</td>
@@ -259,12 +263,6 @@ function doView() {
             <tr>
             <td>智育成绩：</td>
              <td><input type="text" id="Ffsc" name="Ffsc" class="easyui-validatebox" required="required" />&nbsp;
-             <span style="color: red">*</span></td>
-         
-            </tr>
-            <tr>
-            <td>综测排名：</td>
-             <td><input type="text" id="sco" name="sco" class="easyui-validatebox" required="required" />&nbsp;
              <span style="color: red">*</span></td>
             </tr>
             </table>
