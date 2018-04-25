@@ -48,4 +48,14 @@ select count(*) from tb_chengji_jiaotong
     <if test="student_number !=null and student_number !=''">and student_number=#{student_number}</if>
     </where>
 </select>
+
+<!-- 导入Excel -->
+  <insert id="addTeacher_Chengji_jiaotongByExcel" parameterType="java.util.List" >
+    insert into tb_chengji_jiaotong (zhuanye_id,zhuanye_name,student_number,student_name,kc_tlys,kc_tlhy,kc_jtgh,kc_tlxc,kc_tllc
+ ,kc_tlhy_kcsj,kc_jtys_sx,kc_rjgc_sx,cj_xueqi) VALUES
+    <foreach collection="jiaotongList" item="item" index="index" separator="," >  
+    (#{item.zhuanye_id},#{item.zhuanye_name},#{item.student_number},#{item.student_name},#{item.kc_tlys},#{item.kc_tlhy},#{item.kc_jtgh},#{item.kc_tlxc},#{item.kc_tllc}
+ ,#{item.kc_tlhy_kcsj},#{item.kc_jtys_sx},#{item.kc_rjgc_sx},#{item.cj_xueqi})
+    </foreach>  
+  </insert>
 </mapper>

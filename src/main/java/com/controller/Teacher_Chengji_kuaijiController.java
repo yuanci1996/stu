@@ -3,7 +3,6 @@ package com.controller;
 import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pojo.ChengJi_kuaiji;
 import com.pojo.PageBean;
-import com.pojo.TeacherForm;
 import com.service.Teacher_Chengji_kuaijiService;
 
 @Controller
@@ -25,7 +23,7 @@ public class Teacher_Chengji_kuaijiController {
 	@Qualifier(value="teacher_Chengji_kuaijiService")
 	private Teacher_Chengji_kuaijiService teacher_Chengji_kuaijiService;
 	
-	 int zhuanye_id=0;
+	 int zhuanye_id=3;
 	HashMap<String, Object> params=new HashMap<String, Object>();
 	
 	@RequestMapping(value="/addTeacher_Chengji_kuaiji")
@@ -65,9 +63,6 @@ public class Teacher_Chengji_kuaijiController {
 	@ResponseBody
 	public ModelMap queryTeacher_Chengji_kuaijiList(@RequestParam("page") Integer page,HttpServletRequest req,
 			@RequestParam("rows") Integer rows,@RequestParam(value = "student_number", required = false) String student_number) {
-		HttpSession session=req.getSession();
-		TeacherForm user=(TeacherForm) session.getAttribute("user");
-		zhuanye_id=user.getZhuanye_id();
 		ModelMap model=new ModelMap();
 		PageBean pageBean = new PageBean(page, rows);
 		params.put("pageStart", pageBean.getPageStart());

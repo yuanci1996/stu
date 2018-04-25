@@ -3,6 +3,8 @@ package com.service;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.pojo.ChengJi_jiaotong;
 
 public interface Teacher_Chengji_jiaotongService {
@@ -41,4 +43,11 @@ public interface Teacher_Chengji_jiaotongService {
 	 * @return
 	 */
 	public Long queryTeacher_Chengji_jiaotongListTotal(Map<String,Object> params);
+	
+	/**
+	 * 导入交通成绩Excel
+	 * @param jiaotongList
+	 * @return
+	 */
+	public int addTeacher_Chengji_jiaotongByExcel(@Param("jiaotongList") List<Object> jiaotongList);
 }

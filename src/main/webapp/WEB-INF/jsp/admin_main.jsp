@@ -253,8 +253,12 @@ pageEncoding="UTF-8"%>
             <ul id="treeMenu" class="ztree"><li>
             <div><a onclick="showcontent('学生基本信息管理','${pageContext.request.contextPath }/adm_info')">学生基本信息管理</a></div>
             <div><a onclick="showcontent('学生奖惩信息管理','${pageContext.request.contextPath }/adm_jc')">学生奖惩信息管理</a></div>
-         
-            <div><a onclick="showcontent('综合测评管理','${pageContext.request.contextPath }/adm_ccj')">综合测评管理</a></div>
+            <div><a >学生成绩信息管理</a></div>
+            <ul class="ztree"><li>
+            <div><a onclick="showcontent('软件+机械电子','${pageContext.request.contextPath }/adm_cj_jixie')">软件+机械电子</a></div>
+            <div><a onclick="showcontent('软件+交通运输','${pageContext.request.contextPath }/adm_cj_jiaotong')">软件+交通运输</a></div>
+            </li></ul>
+            <div><a onclick="showcontent('综合测评管理','${pageContext.request.contextPath }/adm_ccj')">综合测评信息管理</a></div>
             </li></ul>
         </div>
 <!--         <div title="系统管理" data-options="iconCls:'icon-mini-add'" style="overflow:auto">

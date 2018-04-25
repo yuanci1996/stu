@@ -7,6 +7,8 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Param;
 
 import com.pojo.CchengjiForm;
+import com.pojo.ChengJi_jiaotong;
+import com.pojo.ChengJi_jixie;
 import com.pojo.JianChengForm;
 import com.pojo.StudentForm;
 
@@ -55,6 +57,14 @@ public interface StudentMapper {
 	 */
 	public Long queryStudentListgbTotal(Map<String,Object> params);
 	/**
-	 * 成绩
+	 * 机械学生查询成绩
 	 */
+	public List<ChengJi_jixie> queryStuChengJi_jixie(Map<String,Object> params);
+	public Long queryStuChengJi_jixieTotal(Map<String,Object> params);
+	
+	/**
+	 * 交通学生查询成绩
+	 */
+	public List<ChengJi_jiaotong> queryStuChengJi_jiaotong(Map<String,Object> params);
+	public Long queryStuChengJi_jiaotongTotal(Map<String,Object> params);
 }

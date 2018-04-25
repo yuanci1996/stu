@@ -57,6 +57,14 @@ function doView() {
 		text : '删除',
 		iconCls : 'icon-cancel',
 		handler : doDelete
+	}, {
+		id : 'button-export',
+		text : '<a style="text-decoration:none;" href="${pageContext.request.contextPath}/erportTeacher_Chengji_jiaotongByExcel?zhuanye_id='+"${sessionScope.user.zhuanye_id }"+'">导出到Excel</a>',
+		iconCls : 'icon-save'
+	}, {
+		id : 'button-daoru',
+		text : '<a style="text-decoration:none;" href="javascript:openExcelDialog()">导入Excel</a>',
+		iconCls : 'icon-edit'
 	}];
 	//定义冻结列
 	var frozenColumns = [ [ {
@@ -152,7 +160,26 @@ function doView() {
 		$("body").css({visibility:"visible"});
 		
 	});
-	
+	//导入面板
+	function openExcelDialog() {
+	    $("#excelDlg").dialog("open").dialog("setTitle", "导入Excel");  
+	}
+	function insertExcel() {
+		var excelUrl = "${pageContext.request.contextPath}/addTeacher_Chengji_jiaotongByExcel";
+	    $("#excelForm").form("submit", {
+	    	url : excelUrl ,
+	        success : function(result) {
+	            var result = eval('(' + result + ')');
+	            if (result) {
+	                $.messager.alert("系统提示", "导入成功!");
+	                $("#excelDlg").dialog("close");
+	                $("#grid").datagrid("reload");
+	            } else {
+	                $.messager.alert("系统提示", "导入 失败!");
+	                return;
+	            }
+	        }
+	    });}
 
 	//新增学生信息
 	function openAddDialog() {
@@ -306,5 +333,20 @@ function doView() {
             <a href="javascript:saveStudent()" class="easyui-linkbutton"
                 iconCls="icon-ok">保存</a>
  </div>
+ 
+  <div id="excelDlg" class="easyui-dialog" closed="true" style="width:400px"
+            buttons="#excelDlg-buttons"  draggable="flase">
+       <form id="excelForm"  method="post" enctype="multipart/form-data">
+		<p style="font-weight:bold;font-size:150%;" >请选择导入文件:</p>
+		<input type="file" name="file" accept="application/vnd.ms-excel" style="width:auto">
+		<br/>
+	  </form>
+    </div>
+        <div id="excelDlg-buttons">
+            <a href="javascript:insertExcel()" class="easyui-linkbutton"
+                iconCls="icon-ok">导入</a>
+                 <a href="${pageContext.request.contextPath}/erportTeacher_Chengji_jiaotongExcelMuBan" class="easyui-linkbutton"
+                iconCls="icon-edit">模板下载</a>
+   </div>
 </body>
 </html>

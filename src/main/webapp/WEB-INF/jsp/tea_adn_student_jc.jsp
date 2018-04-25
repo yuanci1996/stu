@@ -37,14 +37,11 @@ function doView() {
 	// 工具栏
 	var toolbar = [  { 
         text: '<input type="text" id="number"  class="easyui-searchbox" style="margin-top:-2px;" placeholder="学号"/>' 
-    }, {
-		id : 'button-export',
-		text : '<a style="text-decoration:none;" href="${pageContext.request.contextPath}/erportStudentsExcel?zhuanye_id='+"${sessionScope.user.zhuanye_id }"+'">导出到Excel</a>',
-		iconCls : 'icon-save'
-	}, {
-		id : 'button-daoru',
-		text : '<a style="text-decoration:none;" href="javascript:openStuExcelDialog()">导入Excel</a>',
-		iconCls : 'icon-edit'
+    },{
+		id : 'button-view',	
+		text : '查找',
+		iconCls : 'icon-search',
+		handler : doView
 	}];
 	//定义冻结列
 	var frozenColumns = [ [ {

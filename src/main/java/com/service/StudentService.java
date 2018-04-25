@@ -11,6 +11,8 @@ import org.apache.ibatis.annotations.Param;
 
 
 import com.pojo.CchengjiForm;
+import com.pojo.ChengJi_jiaotong;
+import com.pojo.ChengJi_jixie;
 import com.pojo.JianChengForm;
 import com.pojo.StudentForm;
 
@@ -58,10 +60,15 @@ public interface StudentService {
 	 * 
 	 */
 	public Long queryStudentListgbTotal(Map<String,Object> params);
-//	/**
-//	 * 成绩
-//	 * @param student_number
-//	 * @return
-//	 */
-//	public CchengjiForm querygradeall(@Param("student_number")String student_number);
+	/**
+	 * 机械学生查询成绩
+	 */
+	public List<ChengJi_jixie> queryStuChengJi_jixie(Map<String,Object> params);
+	public Long queryStuChengJi_jixieTotal(Map<String,Object> params);
+	
+	/**
+	 * 交通学生查询成绩
+	 */
+	public List<ChengJi_jiaotong> queryStuChengJi_jiaotong(Map<String,Object> params);
+	public Long queryStuChengJi_jiaotongTotal(Map<String,Object> params);
 }
