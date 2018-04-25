@@ -41,7 +41,14 @@ public interface StudentMapper {
 	 */
 	public Long queryStudentListTotal(Map<String,Object> params);
 	/**
+	 * 
+	 */
+	public Long queryStudentListjcTotal(Map<String,Object> params);
+	/**
+	 * 
+	 */
+	public Long queryStudentListgbTotal(Map<String,Object> params);
+	/**
 	 * ³É¼¨
 	 */
-
 }

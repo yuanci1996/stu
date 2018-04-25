@@ -74,7 +74,7 @@ public class StudentController {
 		params.put("pageStart", pageBean.getPageStart());
 		params.put("rows", pageBean.getRows());
 		params.put("student_number", Sid);
-		model.put("total", studentService.queryStudentListTotal(params));
+		model.put("total", studentService.queryStudentListjcTotal(params));
 		model.put("rows", studentService.queryjcall(params));
 	
 		params.clear();
@@ -103,7 +103,7 @@ public class StudentController {
 		params.put("pageStart", pageBean.getPageStart());
 		params.put("rows", pageBean.getRows());
 		params.put("student_number", Sid);
-		model.put("total", studentService.queryStudentListTotal(params));
+		model.put("total", studentService.queryStudentListgbTotal(params));
 		model.put("rows", studentService.querygball(params));
 		System.out.println("Sid:"+Sid);
 		params.clear();

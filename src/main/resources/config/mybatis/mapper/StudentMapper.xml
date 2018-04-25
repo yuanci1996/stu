@@ -30,6 +30,12 @@
 		</where>
 		<if test="pageStart !=null and rows !=null "> limit #{pageStart},#{rows}</if>
 	</select>
+		<select id="queryStudentListgbTotal" resultType="java.lang.Long">
+		select count(*) from tb_cchengji
+		<where>
+			<if test="student_number !=null and student_number !=''">and student_number=#{student_number}</if>
+		</where>
+	</select>
 	<!--  -->
 		<select id="queryjcall" resultType="JianchengForm">
 		select * from tb_jiangcheng
@@ -37,6 +43,12 @@
 			<if test="student_number !=null and student_number !=''">and student_number=#{student_number}</if>
 		</where>
 		<if test="pageStart !=null and rows !=null "> limit #{pageStart},#{rows}</if>
+	</select>
+		<select id="queryStudentListjcTotal" resultType="java.lang.Long">
+		select count(*) from tb_jiangcheng
+		<where>
+			<if test="student_number !=null and student_number !=''">and student_number=#{student_number}</if>
+		</where>
 	</select>
 	
 	

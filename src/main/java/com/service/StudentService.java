@@ -44,6 +44,14 @@ public interface StudentService {
 	 * 
 	 */
 	public Long queryStudentListTotal(Map<String,Object> params);
+	/**
+	 * 
+	 */
+	public Long queryStudentListjcTotal(Map<String,Object> params);
+	/**
+	 * 
+	 */
+	public Long queryStudentListgbTotal(Map<String,Object> params);
 //	/**
 //	 * ³É¼¨
 //	 * @param student_number
