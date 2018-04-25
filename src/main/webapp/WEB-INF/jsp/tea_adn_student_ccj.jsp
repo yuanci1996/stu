@@ -38,26 +38,11 @@ function doView() {
 	var toolbar = [  { 
         text: '<input type="text" id="number"  class="easyui-searchbox" style="margin-top:-2px;" placeholder="学号"/>' 
     }, {
-		id : 'button-view',	
-		text : '查找',
-		iconCls : 'icon-search',
-		handler : doView
-	},{
-		id : 'button-add',
-		text : '新增',
-		iconCls : 'icon-add',
-		handler : openAddDialog
-	}, {
 		id : 'button-edit',
 		text : '修改',
 		iconCls : 'icon-edit',
 		handler : openModifyDialog
 	}, {
-		id : 'button-delete',
-		text : '删除',
-		iconCls : 'icon-cancel',
-		handler : doDelete
-	},{
 		id : 'button-export',
 		text : '<a style="text-decoration:none;" href="${pageContext.request.contextPath}/erportStudentsExcel?zhuanye_id='+"${sessionScope.user.zhuanye_id }"+'">导出到Excel</a>',
 		iconCls : 'icon-save'
@@ -241,7 +226,7 @@ function doView() {
              <span style="color: red">*</span>
              </td>
              <td>姓名：</td>
-             <td><input type="text" id="name" name="name" class="easyui-validatebox"  required="required" />&nbsp;
+             <td><input type="text" id="name" name="name" class="easyui-validatebox" readonly="readonly"  required="required" />&nbsp;
              <span style="color: red">*</span></td>
             </tr>
              <tr>
@@ -249,20 +234,20 @@ function doView() {
              <td><input type="text" id="Fosc" name="Fosc" class="easyui-validatebox" required="required" />&nbsp;
              <span style="color: red">*</span></td>
              <td>表彰得分：</td>
-             <td><input type="text" id="Ftosc" name="Ftosc" class="easyui-validatebox" required="required" />&nbsp;
+             <td><input type="text" id="Ftosc" name="Ftosc" class="easyui-validatebox"  readonly="readonly" required="required" />&nbsp;
              <span style="color: red">*</span></td>
               </tr>         
             <tr>
             <td>惩罚扣分：</td>
-             <td><input type="text" id="Ftwsc" name="Ftwsc" class="easyui-validatebox" required="required" />&nbsp;
+             <td><input type="text" id="Ftwsc" name="Ftwsc" class="easyui-validatebox"  readonly="readonly" required="required" />&nbsp;
              <span style="color: red">*</span></td>
              <td>体育成绩:</td>
-             <td><input type="text" id="Frsc" name="Frsc" class="easyui-validatebox" required="required"/>&nbsp;
+             <td><input type="text" id="Frsc" name="Frsc" class="easyui-validatebox"  readonly="readonly" required="required"/>&nbsp;
              <span style="color: red">*</span></td>
             </tr>
             <tr>
             <td>智育成绩：</td>
-             <td><input type="text" id="Ffsc" name="Ffsc" class="easyui-validatebox" required="required" />&nbsp;
+             <td><input type="text" id="Ffsc" name="Ffsc" class="easyui-validatebox"  readonly="readonly" required="required" />&nbsp;
              <span style="color: red">*</span></td>
             </tr>
             </table>

@@ -38,26 +38,6 @@ function doView() {
 	var toolbar = [  { 
         text: '<input type="text" id="number"  class="easyui-searchbox" style="margin-top:-2px;" placeholder="学号"/>' 
     }, {
-		id : 'button-view',	
-		text : '查找',
-		iconCls : 'icon-search',
-		handler : doView
-	},{
-		id : 'button-add',
-		text : '新增',
-		iconCls : 'icon-add',
-		handler : openAddDialog
-	}, {
-		id : 'button-edit',
-		text : '修改',
-		iconCls : 'icon-edit',
-		handler : openModifyDialog
-	}, {
-		id : 'button-delete',
-		text : '删除',
-		iconCls : 'icon-cancel',
-		handler : doDelete
-	},{
 		id : 'button-export',
 		text : '<a style="text-decoration:none;" href="${pageContext.request.contextPath}/erportStudentsExcel?zhuanye_id='+"${sessionScope.user.zhuanye_id }"+'">导出到Excel</a>',
 		iconCls : 'icon-save'

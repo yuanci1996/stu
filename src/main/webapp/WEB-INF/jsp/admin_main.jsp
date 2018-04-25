@@ -221,9 +221,9 @@ pageEncoding="UTF-8"%>
     </div>
 
     <div class="index_user" id="sessionInfoDiv">
-        [<strong>
+        尊敬的[<strong>
 				${user.admin_username }
-		</strong>]，欢迎你！
+		</strong>]管理员，欢迎你！
     </div>
 
     <div class="index_control">
