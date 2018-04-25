@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.TeacherCchengjiMapper">
+
+<insert id="addScore">
+insert into tb_cchengji(zhuanye_id,student_number,name,fosc,Ftosc,Ftwsc,Frsc,Ffsc,Fsc)
+ values (#{zhuanye_id},#{student_number},#{name},#{Fosc},#{Ftosc},#{Ftwsc},#{Frsc},#{Ffsc},#{Fsc})
+</insert>
+
+<update id="modifyCchengji">
+update tb_cchengji 
+<set>
+    <if test="name !=null and student_number !=''">name=#{name},</if>
+    <if test="Fosc !=null and student_number !=''">Fosc=#{Fosc},</if>
+    <if test="Ftosc !=null">Ftosc=#{Ftosc},</if>
+    <if test="Ftwsc !=null">Ftwsc=#{Ftwsc},</if>
+    <if test="Frsc !=null">Frsc=#{Frsc},</if>
+    <if test="Ffsc !=null">Ffsc=#{Ffsc},</if>
+    <if test="Fsc !=null">Fsc=#{Fsc},</if>
+</set>
+where cc_id=#{cc_id}
+</update>
+
+<delete id="deleteCchengji">
+delete from tb_cchengji where cc_id=#{cc_id}
+</delete>
+
+<select id="queryCchengjiList" resultType="CchengjiForm">
+select * from tb_cchengji
+    <where>
+    <if test="zhuanye_id !=null"> zhuanye_id=#{zhuanye_id}</if>
+    <if test="student_number !=null and student_number !=''">and student_number=#{student_number}</if>
+    </where>
+    <if test="pageStart !=null and rows !=null "> limit #{pageStart},#{rows}</if>
+</select>
+
+<select id="queryCchengjiListJcTotal" resultType="java.lang.Long">
+select count(*) from tb_cchengji
+    <where>
+    <if test="zhuanye_id !=null"> zhuanye_id=#{zhuanye_id}</if>
+    <if test="student_number !=null and student_number !=''">student_number=#{student_number}</if>
+    </where>
+</select>
+</mapper>
