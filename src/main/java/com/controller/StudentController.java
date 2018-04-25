@@ -29,6 +29,7 @@ public class StudentController {
 	private StudentService studentService;
 
 	private String Sid;
+	private int zhuanye_id;
 	HashMap<String, Object> params = new HashMap<String, Object>();
 
 	// 学生登入
@@ -40,6 +41,7 @@ public class StudentController {
 		if (user != null) {
 			session.setAttribute("user", user);
 			Sid = user.getStudent_number();
+			zhuanye_id=user.getZhuanye_id();
 			return "redirect:student_main";
 		} else {
 			attr.addFlashAttribute("Msg", "账号或密码错误！！");
@@ -84,12 +86,27 @@ public class StudentController {
 	// 查询学生成绩信息
 	@RequestMapping(value = "/studentgradelist")
 	@ResponseBody
-	public ModelMap student_gradelist(HttpServletRequest request, HttpServletResponse response) {
+	public ModelMap student_gradelist(@RequestParam("page") Integer page, @RequestParam("rows") Integer rows,HttpServletRequest request, HttpServletResponse response) {
 		// List<StudentForm> list=(List<StudentForm>) studentService.querygradeall(id);
 		// SchengjiForm user=studentService.querygradeall(Sid);
 		ModelMap model = new ModelMap();
-		model.put("total", 1);
-		// model.put("rows", user);
+		PageBean pageBean = new PageBean(page, rows);
+		params.put("pageStart", pageBean.getPageStart());
+		params.put("rows", pageBean.getRows());
+		params.put("student_number", Sid);
+		switch (zhuanye_id) {
+		case 1:
+			model.put("total", studentService.queryStuChengJi_jixieTotal(params));
+			model.put("rows", studentService.queryStuChengJi_jixie(params));
+			break;
+		case 2:
+			model.put("total", studentService.queryStuChengJi_jiaotongTotal(params));
+			model.put("rows", studentService.queryStuChengJi_jiaotong(params));
+			break;
+		default:
+			break;
+		}
+		params.clear();
 		return model;
 	}
 

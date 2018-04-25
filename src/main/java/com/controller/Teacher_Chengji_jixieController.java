@@ -13,7 +13,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFCellStyle;
@@ -31,7 +30,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.pojo.ChengJi_jixie;
 import com.pojo.PageBean;
-import com.pojo.TeacherForm;
 import com.service.Teacher_Chengji_jixieService;
 import com.utils.ExcelUtil;
 
@@ -42,7 +40,7 @@ public class Teacher_Chengji_jixieController {
 	@Qualifier(value="teacher_Chengji_jixieService")
 	private Teacher_Chengji_jixieService teacher_Chengji_jixieService;
 	
-	 int zhuanye_id=0;
+	 int zhuanye_id=1;
 	HashMap<String, Object> params=new HashMap<String, Object>();
 	
 	@RequestMapping(value="/addTeacher_Chengji_jixie")
@@ -82,9 +80,6 @@ public class Teacher_Chengji_jixieController {
 	@ResponseBody
 	public ModelMap queryTeacher_Chengji_jixieList(@RequestParam("page") Integer page,HttpServletRequest req,
 			@RequestParam("rows") Integer rows,@RequestParam(value = "student_number", required = false) String student_number) {
-		HttpSession session=req.getSession();
-		TeacherForm user=(TeacherForm) session.getAttribute("user");
-		zhuanye_id=user.getZhuanye_id();
 		ModelMap model=new ModelMap();
 		PageBean pageBean = new PageBean(page, rows);
 		params.put("pageStart", pageBean.getPageStart());

@@ -43,5 +43,11 @@ public class Teacher_Chengji_jiaotongServiceImpl implements Teacher_Chengji_jiao
 		return teacher_Chengji_jiaotongMapper.addTeacher_Chengji_jiaotong(jt);
 	}
 
+	@Override
+	public int addTeacher_Chengji_jiaotongByExcel(List<Object> jiaotongList) {
+		// TODO Auto-generated method stub
+		return teacher_Chengji_jiaotongMapper.addTeacher_Chengji_jiaotongByExcel(jiaotongList);
+	}
+
 
 }

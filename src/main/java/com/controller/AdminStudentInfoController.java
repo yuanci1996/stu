@@ -1,25 +1,9 @@
 package com.controller;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URLEncoder;
+
 import java.util.HashMap;
-import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -27,15 +11,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 import com.pojo.PageBean;
 import com.pojo.StudentForm;
-import com.pojo.TeacherForm;
 import com.service.TeacherService;
-import com.utils.ExcelUtil;
 
 @Controller
 public class AdminStudentInfoController {
@@ -43,7 +23,6 @@ public class AdminStudentInfoController {
 	@Qualifier(value="teacherService")
 	private TeacherService teacherService;
 	
-    int zhuanye_id=0;
 	HashMap<String, Object> params=new HashMap<String, Object>();
 
 	
@@ -58,12 +37,14 @@ public class AdminStudentInfoController {
 	@RequestMapping(value="/adminqueryStudentList")
 	@ResponseBody
 	public ModelMap queryStudentList(@RequestParam("page") Integer page,
-			@RequestParam("rows") Integer rows,@RequestParam(value = "student_number", required = false) String student_number) {
+			@RequestParam("rows") Integer rows,@RequestParam(value = "student_number", required = false) String student_number,
+			@RequestParam(value = "zhuanye_id", required = false) String zhuanye_id) {
 		ModelMap model=new ModelMap();
 		PageBean pageBean = new PageBean(page, rows);
 		params.put("pageStart", pageBean.getPageStart());
 		params.put("rows", pageBean.getRows());
 		params.put("student_number", student_number);
+		params.put("zhuanye_id", zhuanye_id);
 		model.put("total", teacherService.queryStudentListTotal(params));
 		model.put("rows", teacherService.queryStudentList(params));
 		params.clear();
@@ -110,7 +91,12 @@ public class AdminStudentInfoController {
 	@RequestMapping(value="/adminaddStudent")
 	@ResponseBody
 	public String addStudent(StudentForm s) {
-		s.setZhuanye_id(zhuanye_id);;//所属老师的班级放在学生的班级Id
+//		s.setZhuanye_id(zhuanye_id);;//所属老师的班级放在学生的班级Id
+		if(s.getStudent_zhuanye().equals("软件工程+机械电子工程")) {
+			s.setZhuanye_id(1);
+		}else if(s.getStudent_zhuanye().equals("软件工程+交通运输工程")){
+			s.setZhuanye_id(2);
+		}
 		s.setStudent_password("123456");//学生初始密码
 		int result=teacherService.addStudent(s);
 		if(result>0) {

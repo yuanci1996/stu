@@ -34,6 +34,42 @@ pageEncoding="UTF-8"%>
             src="${pageContext.request.contextPath }/js/outOfBounds.js"
             type="text/javascript"></script>
     <script type="text/javascript">
+    function cj(zhuanye_id) {
+    	switch (zhuanye_id) {
+		case 1:
+			jixie();
+			break;
+		case 2:
+			jiaotong();
+			break;
+		case 3:
+			kuaiji();
+			break;
+		case 4:
+			guidao();
+			break;
+		case 5:
+			daotie();
+			break;
+		default:
+			break;
+		}
+    };
+    function jixie() {
+    	showcontent('学生成绩管理','${pageContext.request.contextPath }/student_cj_jixie');
+	}
+    function jiaotong() {
+    	showcontent('学生成绩管理','${pageContext.request.contextPath }/student_cj_jiaotong');
+	}
+    function kuaiji() {
+    	showcontent('学生成绩管理','${pageContext.request.contextPath }/student_cj_kuaiji');
+	}
+    function guidao() {
+    	showcontent('学生成绩管理','${pageContext.request.contextPath }/student_cj_guidao');
+    }
+    function daotie() {
+    	showcontent('学生成绩管理','${pageContext.request.contextPath }/student_cj_daotie');
+    }
         // 初始化ztree菜单
         $(function() {
             var setting = {
@@ -216,7 +252,7 @@ pageEncoding="UTF-8"%>
             <ul id="treeMenu" class="ztree"><li>
             <div><a onclick="showcontent('查询基本信息','${pageContext.request.contextPath }/student_list')">查询基本信息</a></div>
             <div><a onclick="showcontent('查询奖惩信息','${pageContext.request.contextPath }/studentjc_list')">查询奖惩信息</a></div>
-            <div><a onclick="showcontent('查询成绩信息','${pageContext.request.contextPath }/studentgrade_list')">查询成绩信息</a></div>
+            <div><a id="cj_onclick" onclick="cj(${user.zhuanye_id})">查询成绩信息</a></div>
             <div><a onclick="showcontent('查询综合测评信息','${pageContext.request.contextPath}/studentgb_list')">查询综合测评信息</a></div>
             </li></ul>
         </div>  

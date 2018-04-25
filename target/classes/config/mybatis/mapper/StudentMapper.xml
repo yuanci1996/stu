@@ -52,9 +52,35 @@
 	</select>
 	
 	
+	<!--  -->
+		<select id="queryStuChengJi_jixie" resultType="ChengJi_jixie">
+		select * from tb_chengji_jixie
+		<where>
+			<if test="student_number !=null and student_number !=''">and student_number=#{student_number}</if>
+		</where>
+		<if test="pageStart !=null and rows !=null "> limit #{pageStart},#{rows}</if>
+	</select>
+		<select id="queryStuChengJi_jixieTotal" resultType="java.lang.Long">
+		select count(*) from tb_chengji_jixie
+		<where>
+			<if test="student_number !=null and student_number !=''">and student_number=#{student_number}</if>
+		</where>
+	</select>
 	
-	
-	
+		<!--  -->
+		<select id="queryStuChengJi_jiaotong" resultType="ChengJi_jiaotong">
+		select * from tb_chengji_jiaotong
+		<where>
+			<if test="student_number !=null and student_number !=''">and student_number=#{student_number}</if>
+		</where>
+		<if test="pageStart !=null and rows !=null "> limit #{pageStart},#{rows}</if>
+	</select>
+		<select id="queryStuChengJi_jiaotongTotal" resultType="java.lang.Long">
+		select count(*) from tb_chengji_jiaotong
+		<where>
+			<if test="student_number !=null and student_number !=''">and student_number=#{student_number}</if>
+		</where>
+	</select>
 	
 
 

@@ -4,12 +4,13 @@ package com.service.impl;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mapper.StudentMapper;
 import com.pojo.CchengjiForm;
+import com.pojo.ChengJi_jiaotong;
+import com.pojo.ChengJi_jixie;
 import com.pojo.JianChengForm;
 import com.pojo.StudentForm;
 import com.service.StudentService;
@@ -58,5 +59,29 @@ public class StudentServiceImpl implements StudentService{
 //	public CchengjiForm querygradeall(@Param("student_number")String student_number) {
 //		return studentMapper.querygradeall(student_number);
 //	}
+
+	@Override
+	public List<ChengJi_jixie> queryStuChengJi_jixie(Map<String, Object> params) {
+		// TODO Auto-generated method stub
+		return studentMapper.queryStuChengJi_jixie(params);
+	}
+
+	@Override
+	public Long queryStuChengJi_jixieTotal(Map<String, Object> params) {
+		// TODO Auto-generated method stub
+		return studentMapper.queryStuChengJi_jixieTotal(params);
+	}
+
+	@Override
+	public List<ChengJi_jiaotong> queryStuChengJi_jiaotong(Map<String, Object> params) {
+		// TODO Auto-generated method stub
+		return studentMapper.queryStuChengJi_jiaotong(params);
+	}
+
+	@Override
+	public Long queryStuChengJi_jiaotongTotal(Map<String, Object> params) {
+		// TODO Auto-generated method stub
+		return studentMapper.queryStuChengJi_jiaotongTotal(params);
+	}
 
 }
