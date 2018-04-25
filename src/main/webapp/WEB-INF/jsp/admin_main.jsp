@@ -34,7 +34,44 @@ pageEncoding="UTF-8"%>
             src="${pageContext.request.contextPath }/js/outOfBounds.js"
             type="text/javascript"></script>
     <script type="text/javascript">
+    function cj(zhuanye_id) {
+    	switch (zhuanye_id) {
+		case 1:
+			jixie();
+			break;
+		case 2:
+			jiaotong();
+			break;
+		case 3:
+			kuaiji();
+			break;
+		case 4:
+			guidao();
+			break;
+		case 5:
+			daotie();
+			break;
+		default:
+			break;
+		}
+    };
+    function jixie() {
+    	showcontent('学生成绩管理','${pageContext.request.contextPath }/tea_adn_student_cj_jixie');
+	}
+    function jiaotong() {
+    	showcontent('学生成绩管理','${pageContext.request.contextPath }/tea_adn_student_cj_jiaotong');
+	}
+    function kuaiji() {
+    	showcontent('学生成绩管理','${pageContext.request.contextPath }/tea_adn_student_cj_kuaiji');
+	}
+    function guidao() {
+    	showcontent('学生成绩管理','${pageContext.request.contextPath }/tea_adn_student_cj_guidao');
+    }
+    function daotie() {
+    	showcontent('学生成绩管理','${pageContext.request.contextPath }/tea_adn_student_cj_daotie');
+    }
         // 初始化ztree菜单
+       
         $(function() {
             var setting = {
                 data : {
@@ -110,33 +147,31 @@ pageEncoding="UTF-8"%>
                 }
             });
         });
-
-        function onClick(event, treeId, treeNode, clickFlag) {
-            // 判断树菜单节点是否含有 page属性
-            if (treeNode.page!=undefined && treeNode.page!= "") {
+       
+        function showcontent(name, url) {      
                 var content = '<div style="width:100%;height:100%;overflow:hidden;">'
                     + '<iframe src="'
-                    + treeNode.page
+                    +  url
                     + '" scrolling="auto" style="width:100%;height:100%;border:0;" ></iframe></div>';
-                if ($("#tabs").tabs('exists', treeNode.name)) {// 判断tab是否存在
-                    $('#tabs').tabs('select', treeNode.name); // 切换tab
+                if ($("#tabs").tabs('exists', name)) {// 判断tab是否存在
+                    $('#tabs').tabs('select', name); // 切换tab
                     var tab = $('#tabs').tabs('getSelected');
                     $('#tabs').tabs('update', {
                         tab: tab,
                         options: {
-                            title: treeNode.name,
+                            title: name,
                             content: content
                         }
                     });
                 } else {
                     // 开启一个新的tab页面
                     $('#tabs').tabs('add', {
-                        title : treeNode.name,
+                        title : name,
                         content : content,
                         closable : true
                     });
                 }
-            }
+            
         }
 
         /*******顶部特效 *******/
@@ -164,7 +199,7 @@ pageEncoding="UTF-8"%>
             $.messager
                 .confirm('系统提示','您确定要退出本次登录吗?',function(isConfirm) {
                     if (isConfirm) {
-                        location.href = '${pageContext.request.contextPath }/user_logout.action';
+                        location.href = '${pageContext.request.contextPath }/reLogin';
                     }
                 });
         }
@@ -216,10 +251,10 @@ pageEncoding="UTF-8"%>
     <div class="easyui-accordion" fit="true" border="false">
         <div title="基本功能" data-options="iconCls:'icon-mini-add'" style="overflow:auto">
             <ul id="treeMenu" class="ztree"><li>
-            <div><a href="${pageContext.request.contextPath }/admin_student">学生基本信息管理</a></div>
-            <div><a>学生奖惩信息管理</a></div>
-            <div><a>学生成绩管理</a></div>
-            <div><a>综合测评管理</a></div>
+            <div><a onclick="showcontent('学生基本信息管理','${pageContext.request.contextPath }/adm_info')">学生基本信息管理</a></div>
+            <div><a onclick="showcontent('学生奖惩信息管理','${pageContext.request.contextPath }/adm_jc')">学生奖惩信息管理</a></div>
+         
+            <div><a onclick="showcontent('综合测评管理','${pageContext.request.contextPath }/adm_ccj')">综合测评管理</a></div>
             </li></ul>
         </div>
 <!--         <div title="系统管理" data-options="iconCls:'icon-mini-add'" style="overflow:auto">
@@ -232,7 +267,6 @@ pageEncoding="UTF-8"%>
        <!-- 模块放置空闲 -->
         </div>
     </div>
-</div>
 <div id="footer" data-options="region:'south',border:false">
     <div id="information" >
         华东交通大学 | Powered by <a href="http://www.imust.cn/">imust.cn</a>
