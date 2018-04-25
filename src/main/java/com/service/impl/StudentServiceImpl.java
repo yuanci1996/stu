@@ -54,6 +54,10 @@ public class StudentServiceImpl implements StudentService{
 	public Long queryStudentListgbTotal(Map<String, Object> params) {
 		return studentMapper.queryStudentListTotal(params);
 	}
+	@Override
+	public void modifyStudentep(String student_number,String student_password) {
+		 studentMapper.modifyStudentep(student_number, student_password);
+	}
 //	@Override
 //	public CchengjiForm querygradeall(@Param("student_number")String student_number) {
 //		return studentMapper.querygradeall(student_number);

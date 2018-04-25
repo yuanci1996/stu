@@ -42,7 +42,7 @@ public class TeacherController {
 	@Autowired
 	@Qualifier(value="teacherService")
 	private TeacherService teacherService;
-	
+	String Tid;
     int zhuanye_id=0;
 	HashMap<String, Object> params=new HashMap<String, Object>();
 	/**
@@ -59,6 +59,7 @@ public class TeacherController {
 		TeacherForm user=teacherService.login(teacher_number, teacher_password);
 		if(user!=null) {
 			session.setAttribute("user", user);
+			Tid = Integer.toString(user.getTeacher_number());
 			zhuanye_id=user.getZhuanye_id();
 			return "redirect:teacher_main";	
 		}else {
@@ -267,4 +268,11 @@ public class TeacherController {
 	        out.close();
 	        bis.close();
 	    }
+	    
+		//ÐÞ¸ÄÃÜÂë
+		@RequestMapping(value = "/teacherep")
+		public String student_ep(@RequestParam("txtNewPass")String student_password,HttpServletRequest req, RedirectAttributes attr) {
+			teacherService.modifyTeacherep(Tid, student_password);
+			return "redirect:teacher_main";
+		}
 }

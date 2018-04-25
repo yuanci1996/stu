@@ -7,4 +7,7 @@
 		select * from tb_admin where admin_account= #{admin_account} and admin_password =
 		#{admin_password}
 	</select>
+	<update id="modifyAdminep" parameterType="String">
+    update tb_admin set admin_password=#{admin_password} where admin_account=#{admin_account}
+    </update>
 </mapper>

@@ -16,7 +16,7 @@
 <div class="header">
     <div class="page-logo">
         <h2><strong>学生综合测评管理系统</strong></h2>
-        <p>Student integrated management system</p>
+        <p>Student Comprehensive survey management system</p>
     </div>
 </div>
    <div id="loginBlock" class="login">

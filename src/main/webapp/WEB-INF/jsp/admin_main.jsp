@@ -216,8 +216,8 @@ pageEncoding="UTF-8"%>
 <body class="easyui-layout">
 <div id="north" data-options="region:'north',border:false">
     <div class="page-logo">
-        <h2><strong>学生综合管理系统</strong></h2>
-        <p>Student integrated management system</p>
+     	<h2><strong>学生综测管理系统</strong></h2>
+        <p>Student Comprehensive survey management system</p>
     </div>
 
     <div class="index_user" id="sessionInfoDiv">
@@ -269,7 +269,7 @@ pageEncoding="UTF-8"%>
     </div>
 <div id="footer" data-options="region:'south',border:false">
     <div id="information" >
-        华东交通大学 | Powered by <a href="http://www.imust.cn/">imust.cn</a>
+        华东交通大学 | Powered by <a href="http://jwc.ecjtu.jx.cn/">ecjtu</a>
     </div>
     <div id="col" class="co1">
         <span id="online"
@@ -299,7 +299,7 @@ pageEncoding="UTF-8"%>
             </form>
         </div>
         <div region="south" border="false" style="text-align:center; height: 30px; line-height: 30px;">
-            <a id="btnEp" class="easyui-linkbutton" icon="icon-ok" href="javascript:void(0)">确定</a>
+            <a id="btnEp" class="easyui-linkbutton" icon="icon-ok" onclick="this.href='${pageContext.request.contextPath }/adminep?txtNewPass='+document.getElementById('txtNewPass').value" 	href="${pageContext.request.contextPath }/adminep?txtNewPass=">确定</a>
             <a id="btnCancel" class="easyui-linkbutton" icon="icon-cancel" href="javascript:void(0)">取消</a>
         </div>
     </div>

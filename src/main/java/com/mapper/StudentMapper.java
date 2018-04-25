@@ -25,6 +25,12 @@ public interface StudentMapper {
 	 */
 	public List<StudentForm> queryall(Map<String,Object> params);
 	/**
+	 * ĞŞ¸ÄÃÜÂë
+	 * @param student_number
+	 * @param student_password
+	 */
+	public void modifyStudentep(@Param("student_number")String student_number,@Param("student_password")String student_password);
+	/**
 	 * ²éÑ¯¸öÈË½±³Í
 	 * @param student_number
 	 * @return

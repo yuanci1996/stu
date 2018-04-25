@@ -41,6 +41,12 @@ public interface StudentService {
 	 */
 	public List<CchengjiForm> querygball(Map<String,Object> params);
 	/**
+	 * ĞŞ¸ÄÃÜÂë
+	 * @param student_number
+	 * @param student_password
+	 */
+	public void modifyStudentep(@Param("student_number")String student_number,@Param("student_password")String student_password);
+	/**
 	 * 
 	 */
 	public Long queryStudentListTotal(Map<String,Object> params);

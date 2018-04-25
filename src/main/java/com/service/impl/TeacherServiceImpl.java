@@ -77,5 +77,9 @@ public class TeacherServiceImpl implements TeacherService {
 	public int addStudentByExcel(List<Object> stuList) {
 		return teacherMapper.addStudentByExcel(stuList);
 	}
-
+	
+	@Override
+	public void modifyTeacherep(String teacher_number,String teacher_password) {
+		teacherMapper.modifyTeacherep(teacher_number, teacher_password);
+	}
 }

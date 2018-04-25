@@ -18,6 +18,12 @@ public interface TeacherMapper {
 	 * @return
 	 */
 	public TeacherForm login(@Param("teacher_number")String teacher_number,@Param("teacher_password") String teacher_password);
+	/**
+	 * 修改密码
+	 * @param student_number
+	 * @param student_password
+	 */
+	public void modifyTeacherep(@Param("teacher_number")String teacher_number,@Param("teacher_password")String teacher_password);
 	
 	/**
 	 * 新增学生

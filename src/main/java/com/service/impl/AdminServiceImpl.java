@@ -18,5 +18,8 @@ public class AdminServiceImpl implements AdminService{
 		return adminMapper.login(admin_account, admin_password);
 	}
 	
-	
+	@Override
+	public void modifyAdminep(String admin_account,String admin_password) {
+		adminMapper.modifyAdminep(admin_account, admin_password);
+	}
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.pojo.AdminForm;
 import com.pojo.CchengjiForm;
 import com.pojo.JianChengForm;
 import com.pojo.PageBean;
@@ -105,8 +106,16 @@ public class StudentController {
 		params.put("student_number", Sid);
 		model.put("total", studentService.queryStudentListgbTotal(params));
 		model.put("rows", studentService.querygball(params));
-		System.out.println("Sid:"+Sid);
 		params.clear();
 		return model;
 	}
+	
+	//ÐÞ¸ÄÃÜÂë
+	@RequestMapping(value = "/studentep")
+	public String student_ep(@RequestParam("txtNewPass")String student_password,HttpServletRequest req, RedirectAttributes attr) {
+		studentService.modifyStudentep(Sid, student_password);
+		return "redirect:student_main";
+	}
+	
+	
 }

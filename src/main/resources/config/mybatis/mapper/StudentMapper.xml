@@ -50,9 +50,9 @@
 			<if test="student_number !=null and student_number !=''">and student_number=#{student_number}</if>
 		</where>
 	</select>
-	
-	
-	
+	<update id="modifyStudentep" parameterType="String">
+    update tb_student set student_password=#{student_password} where student_number=#{student_number}
+    </update>
 	
 	
 	

@@ -170,23 +170,19 @@ pageEncoding="UTF-8"%>
         function editPassword() {
             $('#editPwdWindow').window('open');
         }
-        // 版权信息
-        function showAbout(){
-            $.messager.alert("学生管理系统 v1.0","管理员邮箱: 1334112864@qq.com");
-        }
     </script>
 </head>
 <body class="easyui-layout">
 <div id="north" data-options="region:'north',border:false">
     <div class="page-logo">
-        <h2><strong>学生综合管理系统</strong></h2>
-        <p>Student integrated management system</p>
+ 		<h2><strong>学生综测管理系统</strong></h2>
+        <p>Student Comprehensive survey management system</p>
     </div>
 
     <div class="index_user" id="sessionInfoDiv">
-        [<strong>
+        亲爱的[<strong>
 				${user.student_name}
-		</strong>]，欢迎你！
+		</strong>]同学，欢迎你！
     </div>
     
     <div class="index_control">
@@ -220,9 +216,6 @@ pageEncoding="UTF-8"%>
             <div><a onclick="showcontent('查询综合测评信息','${pageContext.request.contextPath}/studentgb_list')">查询综合测评信息</a></div>
             </li></ul>
         </div>  
-<!--         <div title="系统管理" data-options="iconCls:'icon-mini-add'" style="overflow:auto">
-            <ul id="adminMenu" class="ztree"></ul>
-        </div> -->
     </div>
 </div>
 <div data-options="region:'center'">
@@ -233,7 +226,7 @@ pageEncoding="UTF-8"%>
 </div>
 <div id="footer" data-options="region:'south',border:false">
     <div id="information" >
-        华东交通大学 | Powered by <a href="http://www.imust.cn/">imust.cn</a>
+     华东交通大学 | Powered by <a href="http://jwc.ecjtu.jx.cn/">ecjtu</a>
     </div>
     <div id="col" class="co1">
         <span id="online"
@@ -247,11 +240,11 @@ pageEncoding="UTF-8"%>
         background: #fafafa">
     <div class="easyui-layout" fit="true">
         <div region="center" border="false" style="padding: 10px; background: #fff; border: 1px solid #ccc;">
-            <form id="editpwd">
+            <form id="editpwd" >
                 <table cellpadding=3>
                     <tr>
                         <td>新密码：</td>
-                        <td><input id="txtNewPass" type="Password" class="txt01 easyui-validatebox"
+                        <td><input id="txtNewPass" name="txtNewPass" type="Password" class="txt01 easyui-validatebox"
                                    required="true" data-options="validType:'length[4,8]'"/></td>
                     </tr>
                     <tr>
@@ -259,11 +252,11 @@ pageEncoding="UTF-8"%>
                         <td><input id="txtRePass" type="Password" class="txt01 easyui-validatebox"
                                    required="required" validType="equals['#txtNewPass']" /></td>
                     </tr>
-                </table>
+                </table>                
             </form>
         </div>
-        <div region="south" border="false" style="text-align:center; height: 30px; line-height: 30px;">
-            <a id="btnEp" class="easyui-linkbutton" icon="icon-ok" href="javascript:void(0)">确定</a>
+         <div region="south" border="false" style="text-align:center; height: 30px; line-height: 30px;">
+            <a id="btnEp" class="easyui-linkbutton" icon="icon-ok" onclick="this.href='${pageContext.request.contextPath }/studentep?txtNewPass='+document.getElementById('txtNewPass').value" 	href="${pageContext.request.contextPath }/studentep?txtNewPass=">确定</a>
             <a id="btnCancel" class="easyui-linkbutton" icon="icon-cancel" href="javascript:void(0)">取消</a>
         </div>
     </div>
