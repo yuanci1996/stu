@@ -34,6 +34,14 @@ function doView() {
     });
 
 }
+function exportExcelByZy() {
+	if($("#exportExcelByZy").val()==1){
+		window.location.href = '${pageContext.request.contextPath}/erportCcjExcel?zhuanye_id=1';
+	}else if($("#exportExcelByZy").val()==2){
+		window.location.href = '${pageContext.request.contextPath}/erportCcjExcel?zhuanye_id=2';
+	}
+
+}
 	// 工具栏
 	var toolbar = [  { 
         text: '<input type="text" id="number"  class="easyui-searchbox" style="margin-top:-2px;" placeholder="学号"/>' 
@@ -61,6 +69,10 @@ function doView() {
 		id : 'button-daoru',
 		text : '<a style="text-decoration:none;" href="javascript:openStuExcelDialog()">导入Excel</a>',
 		iconCls : 'icon-edit'
+	},{ 
+        text: '<select id="exportExcelByZy" class="easyui-combobox" onChange="exportExcelByZy()" style="margin-top:-1px;"><option selected="selected" >选择专业导出</option>'+
+        '<option value="1">软件工程+机械电子工程</option><option value="2">软件工程+交通运输工程</option></select>', 
+        iconCls : 'icon-save'
 	}];
 	//定义冻结列
 	var frozenColumns = [ [ {
@@ -136,7 +148,26 @@ function doView() {
 		
 	});
 	
-
+	//导入面板
+	function openStuExcelDialog() {
+	    $("#excelDlg").dialog("open").dialog("setTitle", "导入Excel");  
+	}
+	function insertStuExcel() {
+		var excelUrl = "${pageContext.request.contextPath}/importCcjListByExcel";
+	    $("#excelForm").form("submit", {
+	    	url : excelUrl ,
+	        success : function(result) {
+	            var result = eval('(' + result + ')');
+	            if (result) {
+	                $.messager.alert("系统提示", "导入成功!");
+	                $("#excelDlg").dialog("close");
+	                $("#grid").datagrid("reload");
+	            } else {
+	                $.messager.alert("系统提示", "导入 失败!");
+	                return;
+	            }
+	        }
+	    });}
 	//新增学生信息
 	function openAddDialog() {
 	    $("#dlg").dialog("open").dialog("setTitle", "添加学生");
@@ -268,5 +299,19 @@ function doView() {
             <a href="javascript:saveStudent()" class="easyui-linkbutton"
                 iconCls="icon-ok">保存</a>
  </div>
+      <div id="excelDlg" class="easyui-dialog" closed="true" style="width:400px"
+            buttons="#excelDlg-buttons"  draggable="flase">
+       <form id="excelForm"  method="post" enctype="multipart/form-data">
+		<p style="font-weight:bold;font-size:150%;" >请选择导入文件:</p>
+		<input type="file" name="file" accept="application/vnd.ms-excel" style="width:auto">
+		<br/>
+	  </form>
+    </div>
+        <div id="excelDlg-buttons">
+            <a href="javascript:insertStuExcel()" class="easyui-linkbutton"
+                iconCls="icon-ok">导入</a>
+                 <a href="${pageContext.request.contextPath}/erportCcjExcelMuBan" class="easyui-linkbutton"
+                iconCls="icon-edit">模板下载</a>
+   </div>
 </body>
 </html>

@@ -3,6 +3,8 @@ package com.mapper;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.pojo.CchengjiForm;
 import com.pojo.StudentForm;
 
@@ -34,4 +36,11 @@ public interface TeacherCchengjiMapper {
 	 * 工具
 	 */
 	public Long queryCchengjiListJcTotal(Map<String,Object> params);
+	
+    /**
+     * 导入学生Excel
+     * @param stuList
+     * @return
+     */
+    public int addStudentCcjByExcel(@Param("ccjList") List<Object> ccjList); 
 }

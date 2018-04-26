@@ -40,4 +40,10 @@ public class TeacherCchengjiServiceImpl implements TeacherCchengjiService {
 	public Long queryCchengjiListJcTotal(Map<String,Object> params) {
 		return teacherCchengjiMapper.queryCchengjiListJcTotal(params);
 	}
+
+	@Override
+	public int addStudentCcjByExcel(List<Object> ccjList) {
+		// TODO Auto-generated method stub
+		return teacherCchengjiMapper.addStudentCcjByExcel(ccjList);
+	}
 }

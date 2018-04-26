@@ -41,4 +41,12 @@ select count(*) from tb_cchengji
     <if test="student_number !=null and student_number !=''">student_number=#{student_number}</if>
     </where>
 </select>
+
+           <!-- 导入Excel -->
+  <insert id="addStudentCcjByExcel" parameterType="java.util.List" >
+   insert into tb_cchengji(zhuanye_id,student_number,name,fosc,Ftosc,Ftwsc,Frsc,Ffsc,Fsc) VALUES
+    <foreach collection="ccjList" item="item" index="index" separator="," >  
+       (#{item.zhuanye_id},#{item.student_number},#{item.name},#{item.Fosc},#{item.Ftosc},#{item.Ftwsc},#{item.Frsc},#{item.Ffsc},#{item.Fsc})
+       </foreach>  
+  </insert>
 </mapper>

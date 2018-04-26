@@ -34,6 +34,9 @@ pageEncoding="UTF-8"%>
             src="${pageContext.request.contextPath }/js/outOfBounds.js"
             type="text/javascript"></script>
     <script type="text/javascript">
+    window.onload=function(){
+    	showcontent('欢迎访问','${pageContext.request.contextPath }/stu_welcome');
+    }
     function cj(zhuanye_id) {
     	switch (zhuanye_id) {
 		case 1:
